@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-
-interface Currency {
-  code: string;
-  name: string;
-}
+import { Currency } from "@/types/global";
 
 const currencies: Currency[] = [
   { code: "USD", name: "US Dollar" },
