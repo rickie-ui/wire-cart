@@ -1,8 +1,10 @@
+import Layout from "@/pages/shared/Layout";
+
 const App = () => {
   return (
-    <>
-      <p>Welcome to wire cart</p>
-    </>
+    <section className=" min-h-screen border-2  border-red-500">
+      <Layout />
+    </section>
   );
 };
 
