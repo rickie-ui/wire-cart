@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { currencies } from "@/constants/currencies";
+import { currencies } from "@/constants/constants";
 import { Currency } from "@/types/global";
 
 const CurrencyDropdown: React.FC = () => {

@@ -1,29 +1,16 @@
 import Hero from "@/assets/hero.png";
 import HeroTwo from "@/assets/hero2.png";
-import ImgOne from "@/assets/iPhone.avif";
-import ImgTwo from "@/assets/speaker.avif";
-import ImgThree from "@/assets/tablet.avif";
-import ImgFour from "@/assets/headphone.avif";
-import ImgFive from "@/assets/laptop.avif";
-import ImgSix from "@/assets/accessories.avif";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { images } from "@/constants/constants";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const Home = () => {
-  const images = [
-    {
-      id: 1,
-      src: ImgOne,
-      title: "iPhone",
-    },
-  ];
   return (
     <>
       <Swiper
@@ -91,97 +78,27 @@ const Home = () => {
         <h2 className="my-4 text-3xl font-semibold opacity-70 ">
           Trending Categories
         </h2>
-        <div className="mt-14 flex gap-2">
-          <div className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border p-10">
-            <Link to="#">
-              <img
-                src={ImgOne}
-                alt="iphone"
-                className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
-              />
-            </Link>
-            <Link
-              to="#"
-              className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
+        <div className=" mt-12 flex gap-2">
+          {images.map(({ id, title, src }) => (
+            <div
+              className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border border-secondary p-10"
+              key={id}
             >
-              iPhone
-            </Link>
-          </div>
-          <div className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border p-10">
-            <Link to="#">
-              <img
-                src={ImgTwo}
-                alt="iphone"
-                className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
-              />
-            </Link>
-            <Link
-              to="#"
-              className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
-            >
-              iPhone
-            </Link>
-          </div>
-          <div className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border p-10">
-            <Link to="#">
-              <img
-                src={ImgThree}
-                alt="iphone"
-                className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
-              />
-            </Link>
-            <Link
-              to="#"
-              className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
-            >
-              iPhone
-            </Link>
-          </div>
-          <div className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border p-10">
-            <Link to="#">
-              <img
-                src={ImgFour}
-                alt="iphone"
-                className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
-              />
-            </Link>
-            <Link
-              to="#"
-              className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
-            >
-              iPhone
-            </Link>
-          </div>
-          <div className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border p-10">
-            <Link to="#">
-              <img
-                src={ImgFive}
-                alt="iphone"
-                className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
-              />
-            </Link>
-            <Link
-              to="#"
-              className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
-            >
-              iPhone
-            </Link>
-          </div>
-          <div className=" flex h-64 w-52 flex-col items-center justify-center overflow-hidden border p-10">
-            <Link to="#">
-              <img
-                src={ImgSix}
-                alt="iphone"
-                className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
-              />
-            </Link>
-            <Link
-              to="#"
-              className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
-            >
-              iPhone
-            </Link>
-          </div>
+              <Link to="#">
+                <img
+                  src={src}
+                  alt={src}
+                  className="h-full w-full transition-all duration-1000 hover:scale-110 hover:transform"
+                />
+              </Link>
+              <Link
+                to="#"
+                className="mt-6 font-semibold opacity-60 transition-all hover:text-primary"
+              >
+                {title}
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </>
