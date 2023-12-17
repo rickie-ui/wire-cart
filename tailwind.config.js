@@ -11,6 +11,7 @@ export default {
         primary: "#E43C39",
         secondary: "#F9F9F9",
         third: "#FDC755",
+        fourth: "#EEEEEE",
       },
     },
   },

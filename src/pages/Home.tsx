@@ -1,5 +1,7 @@
 import Hero from "@/assets/hero.png";
 import HeroTwo from "@/assets/hero2.png";
+import BannerOne from "@/assets/sub-banner.webp";
+import BannerTwo from "@/assets/sub-banner-2.webp";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { Pagination } from "swiper/modules";
@@ -101,6 +103,50 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      <section className=" my-10 grid h-[400px] grid-cols-2 gap-5 px-32">
+        <div className="bg-fourth relative flex  h-full flex-col items-center border-none pb-2 pt-8">
+          <div className="z-10">
+            <h2 className="my-3">SECURITY SMART CAMERA</h2>
+            <p className="mb-2 text-2xl">Just Starting At $850</p>
+            <Link
+              to="#"
+              className="inline-block rounded-full bg-primary px-4 py-2.5  font-semibold text-white transition-all hover:bg-black"
+            >
+              Shop Now
+            </Link>
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0 top-0  min-h-full overflow-hidden">
+            <img
+              src={BannerOne}
+              alt=""
+              className="cursor-pointer transition-all duration-1000 hover:scale-110 hover:transform"
+            />
+          </div>
+        </div>
+
+        <div className="bg-fourth relative flex  h-full flex-col items-center border-none pb-2 pt-8">
+          <div className="z-10">
+            <h2 className="my-3">ENTERTAINMENT & GAMES</h2>
+            <p className="mb-2 text-2xl">Just Starting at $280 Hurry up!</p>
+            <Link
+              to="#"
+              className="inline-block rounded-full bg-primary px-4 py-2.5  font-semibold text-white transition-all hover:bg-black"
+            >
+              Shop Now
+            </Link>
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0 top-0  min-h-full overflow-hidden">
+            <img
+              src={BannerTwo}
+              alt=""
+              className="cursor-pointer transition-all duration-1000 hover:scale-110 hover:transform"
+            />
+          </div>
+        </div>
+      </section>
     </>
   );
 };
