@@ -4,9 +4,20 @@ import BannerOne from "@/assets/sub-banner.webp";
 import BannerTwo from "@/assets/sub-banner-2.webp";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { images } from "@/constants/constants";
+import {
+  MdOutlineKeyboardArrowRight,
+  MdOutlineKeyboardArrowLeft,
+} from "react-icons/md";
+
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { FaRegHeart } from "react-icons/fa6";
+import { GiNetworkBars } from "react-icons/gi";
+import { FaRegStar } from "react-icons/fa";
+import ImgOne from "@/assets/iPhone.avif";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -104,7 +115,7 @@ const Home = () => {
         </div>
       </div>
 
-      <section className=" my-10 grid h-[400px] grid-cols-2 gap-5 px-32">
+      <section className=" my-10 grid h-[400px] grid-cols-2 gap-5 border-2  border-purple-500 px-32">
         <div className="bg-fourth relative flex  h-full flex-col items-center border-none pb-2 pt-8">
           <div className="z-10">
             <h2 className="my-3">SECURITY SMART CAMERA</h2>
@@ -144,6 +155,73 @@ const Home = () => {
               alt=""
               className="cursor-pointer transition-all duration-1000 hover:scale-110 hover:transform"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* products section */}
+
+      <section className="px-32">
+        <div className="my-6 flex justify-between ">
+          <h2 className="text-3xl font-semibold opacity-70">Latest Products</h2>
+
+          <div className="flex items-center justify-center gap-4 font-semibold hover:text-primary">
+            <Link to="#">View all products</Link>
+            <IoMdArrowForward className="text-primary" />
+          </div>
+        </div>
+
+        <div className="relative">
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={5}
+            spaceBetween={20}
+            navigation={{
+              nextEl: ".custom-next",
+              prevEl: ".custom-prev",
+            }}
+            className="mb-14 h-96 border-2 border-teal-500 px-4 pt-8"
+          >
+            <SwiperSlide className="shadow-fourth flex h-80 w-56 flex-col items-center justify-center rounded-md  p-2 shadow-lg">
+              <div className="h-32 w-36 overflow-hidden">
+                <img
+                  src={ImgOne}
+                  alt="Original Image"
+                  className="h-full w-full cursor-pointer transition-all duration-1000 hover:scale-110 hover:transform"
+                />
+              </div>
+
+              <div className="my-4 flex gap-4">
+                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
+                  <HiOutlineShoppingBag className="text-xl hover:cursor-pointer" />
+                </button>
+                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
+                  <FaRegHeart className="text-xl hover:cursor-pointer" />
+                </button>
+                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
+                  <GiNetworkBars className="text-xl hover:cursor-pointer" />
+                </button>
+              </div>
+              <div className="my-1.5 flex gap-2 text-xl text-third">
+                <FaRegStar />
+                <FaRegStar />
+                <FaRegStar />
+                <FaRegStar />
+                <FaRegStar />
+              </div>
+              <Link to="" className="my-1 hover:text-primary">
+                iPhone pro gold color
+              </Link>
+              <h3 className="text-lg font-semibold text-primary">$445.00</h3>
+            </SwiperSlide>
+          </Swiper>
+          <div className="absolute -left-5 -right-5 top-40 z-20 flex justify-between">
+            <div className="custom-prev shadow-fourth flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary shadow-xl hover:text-primary">
+              <MdOutlineKeyboardArrowLeft className="text-3xl opacity-60" />
+            </div>
+            <div className="custom-next shadow-fourth flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary shadow-xl hover:text-primary">
+              <MdOutlineKeyboardArrowRight className="text-3xl opacity-60" />
+            </div>
           </div>
         </div>
       </section>
