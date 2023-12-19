@@ -12,6 +12,7 @@ export default {
         secondary: "#F9F9F9",
         third: "#FDC755",
         fourth: "#EEEEEE",
+        fifth: "#E7EBEE",
       },
     },
   },

@@ -22,18 +22,21 @@ import ImgThree from "@/assets/iPhoneThree.png";
 import ImgFour from "@/assets/iPhoneFour.png";
 import ImgSix from "@/assets/headphone.avif";
 import ImgSeven from "@/assets/speaker.avif";
+import BannerCount from "@/assets/banner-count.png";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useState } from "react";
-
 import { Product } from "@/types/global";
+import CountDownTimer from "@/components/CountDown/CountDownTimer";
 
 const Home = () => {
   const [hovered, setHovered] = useState<Array<boolean>>([]);
   const [hoverActive, setHoverActive] = useState(false);
+
+  const targetDate = new Date("2023-12-31T23:59:59");
 
   const products: Product[] = [
     {
@@ -315,6 +318,35 @@ const Home = () => {
           >
             <MdOutlineKeyboardArrowRight className="text-3xl opacity-60" />
           </div>
+        </div>
+      </section>
+
+      {/* countdown banner */}
+      <section className="bg-fifth mb-10 grid h-[400px] w-full grid-cols-2  justify-center  gap-4 border-2 border-green-500 px-32">
+        <div className=" border-2 border-pink-500 pt-6 text-center">
+          <p className="my-4 inline-block bg-primary px-8 py-2 font-semibold text-white">
+            Hurry Up!
+          </p>
+          <h3 className="font-montserrat text-4xl  leading-snug opacity-70">
+            Up To 25% Discount <br /> Check it Out
+          </h3>
+
+          <CountDownTimer targetDate={targetDate} />
+
+          <Link
+            to="#"
+            className="text-lg font-semibold opacity-70 hover:text-primary"
+          >
+            Shop now
+          </Link>
+        </div>
+
+        <div className="bg-fifth h-[400px]  border-2 border-purple-500 ">
+          <img
+            src={BannerCount}
+            alt="countdown-banner"
+            className="h-full w-full"
+          />
         </div>
       </section>
     </>
