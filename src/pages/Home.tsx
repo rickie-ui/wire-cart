@@ -32,11 +32,11 @@ import "swiper/css/pagination";
 import { useState } from "react";
 import { Product } from "@/types/global";
 import CountDownTimer from "@/components/CountDown/CountDownTimer";
+import PopularProducts from "@/components/Products/PopularProducts";
 
 const Home = () => {
   const [hovered, setHovered] = useState<Array<boolean>>([]);
   const [hoverActive, setHoverActive] = useState(false);
-
   const targetDate = new Date("2023-12-31T23:59:59");
 
   const products: Product[] = [
@@ -83,6 +83,103 @@ const Home = () => {
     updatedHovered[index] = false;
     setHovered(updatedHovered);
   };
+
+  // Sample product data
+  const popular = [
+    {
+      id: 1,
+      title: "Product 1",
+      amount: "$100.00",
+      rating: 4,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "accessories",
+    },
+    {
+      id: 2,
+      title: "Product 2",
+      amount: "$150.00",
+      rating: 5,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "phones",
+    },
+    {
+      id: 3,
+      title: "Product 3",
+      amount: "$200.00",
+      rating: 3,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "laptops",
+    },
+    {
+      id: 4,
+      title: "Product 2",
+      amount: "$200.00",
+      rating: 3,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "accessories",
+    },
+    {
+      id: 5,
+      title: "Product 2",
+      amount: "$200.00",
+      rating: 3,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "accessories",
+    },
+    {
+      id: 6,
+      title: "Product 2",
+      amount: "$200.00",
+      rating: 3,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "accessories",
+    },
+    {
+      id: 7,
+      title: "Product 2",
+      amount: "$200.00",
+      rating: 3,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+      category: "laptops",
+    },
+  ];
+
+  // Define tabs data
+  const tabs = [
+    {
+      tab: "accessories",
+      popular: popular.filter((product) => product.category === "accessories"),
+    },
+    {
+      tab: "phones",
+      popular: popular.filter((product) => product.category === "phones"),
+    },
+    {
+      tab: "laptops",
+      popular: popular.filter((product) => product.category === "laptops"),
+    },
+  ];
 
   return (
     <>
@@ -343,6 +440,11 @@ const Home = () => {
             className="h-full w-full"
           />
         </div>
+      </section>
+
+      {/* Popular products */}
+      <section className="my-8 px-32">
+        <PopularProducts tabs={tabs} />
       </section>
     </>
   );
