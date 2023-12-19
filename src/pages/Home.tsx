@@ -17,13 +17,69 @@ import { FaRegHeart } from "react-icons/fa6";
 import { GiNetworkBars } from "react-icons/gi";
 import { FaRegStar } from "react-icons/fa";
 import ImgOne from "@/assets/iPhone.avif";
+import ImgTwo from "@/assets/iPhoneTwo.png";
+import ImgThree from "@/assets/iPhoneThree.png";
+import ImgFour from "@/assets/iPhoneFour.png";
+import ImgSix from "@/assets/headphone.avif";
+import ImgSeven from "@/assets/speaker.avif";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useState } from "react";
+
+import { Product } from "@/types/global";
 
 const Home = () => {
+  const [hovered, setHovered] = useState<Array<boolean>>([]);
+  const [hoverActive, setHoverActive] = useState(false);
+
+  const products: Product[] = [
+    {
+      id: 1,
+      title: "iPhone pro gold",
+      amount: "$500.00",
+      rating: 4,
+      images: {
+        src1: ImgOne,
+        src2: ImgTwo,
+      },
+    },
+    {
+      id: 2,
+      title: "iPhone pro black",
+      amount: "$380.00",
+      rating: 5,
+      images: {
+        src1: ImgThree,
+        src2: ImgFour,
+      },
+    },
+    {
+      id: 3,
+      title: "Homepod mini 2022",
+      amount: "$240.00",
+      rating: 3,
+      images: {
+        src1: ImgSeven,
+        src2: ImgSix,
+      },
+    },
+  ];
+
+  const handleMouseEnter = (index: number) => {
+    const updatedHovered = [...hovered];
+    updatedHovered[index] = true;
+    setHovered(updatedHovered);
+  };
+
+  const handleMouseLeave = (index: number) => {
+    const updatedHovered = [...hovered];
+    updatedHovered[index] = false;
+    setHovered(updatedHovered);
+  };
+
   return (
     <>
       <Swiper
@@ -116,7 +172,7 @@ const Home = () => {
       </div>
 
       <section className=" my-10 grid h-[400px] grid-cols-2 gap-5 border-2  border-purple-500 px-32">
-        <div className="bg-fourth relative flex  h-full flex-col items-center border-none pb-2 pt-8">
+        <div className="relative flex h-full  flex-col items-center border-none bg-fourth pb-2 pt-8">
           <div className="z-10">
             <h2 className="my-3">SECURITY SMART CAMERA</h2>
             <p className="mb-2 text-2xl">Just Starting At $850</p>
@@ -137,7 +193,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="bg-fourth relative flex  h-full flex-col items-center border-none pb-2 pt-8">
+        <div className="relative flex h-full  flex-col items-center border-none bg-fourth pb-2 pt-8">
           <div className="z-10">
             <h2 className="my-3">ENTERTAINMENT & GAMES</h2>
             <p className="mb-2 text-2xl">Just Starting at $280 Hurry up!</p>
@@ -161,7 +217,7 @@ const Home = () => {
 
       {/* products section */}
 
-      <section className="px-32">
+      <section className="px-32 pb-10">
         <div className="my-6 flex justify-between ">
           <h2 className="text-3xl font-semibold opacity-70">Latest Products</h2>
 
@@ -171,7 +227,11 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="relative">
+        <div
+          className="relative border-2 border-teal-500 "
+          onMouseEnter={() => setHoverActive(true)}
+          onMouseLeave={() => setHoverActive(false)}
+        >
           <Swiper
             modules={[Navigation]}
             slidesPerView={5}
@@ -180,48 +240,80 @@ const Home = () => {
               nextEl: ".custom-next",
               prevEl: ".custom-prev",
             }}
-            className="mb-14 h-96 border-2 border-teal-500 px-4 pt-8"
+            className="h-96 px-4 pt-8"
           >
-            <SwiperSlide className="shadow-fourth flex h-80 w-56 flex-col items-center justify-center rounded-md  p-2 shadow-lg">
-              <div className="h-32 w-36 overflow-hidden">
-                <img
-                  src={ImgOne}
-                  alt="Original Image"
-                  className="h-full w-full cursor-pointer transition-all duration-1000 hover:scale-110 hover:transform"
-                />
-              </div>
+            {products.map((product, index) => (
+              <SwiperSlide
+                key={product.id}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
+                className="flex h-80 w-56 flex-col items-center justify-center rounded-md border-2 border-purple-500 p-2  shadow-lg shadow-fourth"
+              >
+                <div className="h-32 w-36 overflow-hidden p-1.5">
+                  {hovered[index] ? (
+                    <img
+                      src={product.images.src2}
+                      alt={`Product ${product.id}`}
+                      className={`h-full w-full  cursor-pointer object-contain transition duration-1000 ${
+                        hovered[index] ? " scale-110 transform" : ""
+                      }`}
+                    />
+                  ) : (
+                    <img
+                      src={product.images.src1}
+                      alt={`Product ${product.id}`}
+                      className="h-full w-full cursor-pointer object-contain transition duration-1000 hover:scale-110 hover:transform"
+                    />
+                  )}
+                </div>
 
-              <div className="my-4 flex gap-4">
-                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
-                  <HiOutlineShoppingBag className="text-xl hover:cursor-pointer" />
-                </button>
-                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
-                  <FaRegHeart className="text-xl hover:cursor-pointer" />
-                </button>
-                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
-                  <GiNetworkBars className="text-xl hover:cursor-pointer" />
-                </button>
-              </div>
-              <div className="my-1.5 flex gap-2 text-xl text-third">
-                <FaRegStar />
-                <FaRegStar />
-                <FaRegStar />
-                <FaRegStar />
-                <FaRegStar />
-              </div>
-              <Link to="" className="my-1 hover:text-primary">
-                iPhone pro gold color
-              </Link>
-              <h3 className="text-lg font-semibold text-primary">$445.00</h3>
-            </SwiperSlide>
+                {/* shop icons */}
+                <div
+                  className={` -mt-2 flex min-w-full items-center justify-center gap-4 ${
+                    hovered[index] ? "opacity-80" : "opacity-0"
+                  } transition duration-300 ease-in-out`}
+                >
+                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
+                    <HiOutlineShoppingBag className="text-xl hover:cursor-pointer" />
+                  </button>
+                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
+                    <FaRegHeart className="text-xl hover:cursor-pointer" />
+                  </button>
+                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
+                    <GiNetworkBars className="text-xl hover:cursor-pointer" />
+                  </button>
+                </div>
+
+                <div className="my-1.5 flex gap-2 text-xl text-third">
+                  <FaRegStar />
+                  <FaRegStar />
+                  <FaRegStar />
+                  <FaRegStar />
+                  <FaRegStar />
+                </div>
+                <Link to="" className="my-1 hover:text-primary">
+                  {product.title}
+                </Link>
+                <h3 className="text-lg font-semibold text-primary">
+                  {product.amount}
+                </h3>
+              </SwiperSlide>
+            ))}
           </Swiper>
-          <div className="absolute -left-5 -right-5 top-40 z-20 flex justify-between">
-            <div className="custom-prev shadow-fourth flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary shadow-xl hover:text-primary">
-              <MdOutlineKeyboardArrowLeft className="text-3xl opacity-60" />
-            </div>
-            <div className="custom-next shadow-fourth flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary shadow-xl hover:text-primary">
-              <MdOutlineKeyboardArrowRight className="text-3xl opacity-60" />
-            </div>
+          <div
+            className={`custom-prev absolute -left-5 top-40 z-10 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary opacity-0 shadow-xl shadow-fourth transition duration-500 hover:text-primary ${
+              hoverActive ? "opacity-100" : ""
+            }`}
+          >
+            <MdOutlineKeyboardArrowLeft className="text-3xl opacity-60" />
+          </div>
+
+          <div
+            className={`custom-next absolute -right-5 top-40 z-10 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary opacity-0 shadow-xl shadow-fourth transition duration-500 hover:text-primary ${
+              hoverActive ? "opacity-100" : ""
+            }`}
+          >
+            <MdOutlineKeyboardArrowRight className="text-3xl opacity-60" />
           </div>
         </div>
       </section>

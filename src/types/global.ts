@@ -8,3 +8,14 @@ export interface Iimages {
   src: string;
   title: string;
 }
+
+export type Product = {
+  id: number;
+  title: string;
+  amount: string;
+  rating: number;
+  images: {
+    src1: string;
+    src2: string;
+  };
+};
