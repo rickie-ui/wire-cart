@@ -11,6 +11,7 @@ import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from "react-icons/md";
+import Button from "@/components/Button/Button";
 
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { FaRegHeart } from "react-icons/fa6";
@@ -276,15 +277,9 @@ const Home = () => {
                     hovered[index] ? "opacity-80" : "opacity-0"
                   } transition duration-300 ease-in-out`}
                 >
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
-                    <HiOutlineShoppingBag className="text-xl hover:cursor-pointer" />
-                  </button>
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
-                    <FaRegHeart className="text-xl hover:cursor-pointer" />
-                  </button>
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-primary">
-                    <GiNetworkBars className="text-xl hover:cursor-pointer" />
-                  </button>
+                  <Button icon={<HiOutlineShoppingBag />}>Add To Cart</Button>
+                  <Button icon={<FaRegHeart />}>Add To Wishlist</Button>
+                  <Button icon={<GiNetworkBars />}>Compare</Button>
                 </div>
 
                 <div className="my-1.5 flex gap-2 text-xl text-third">
