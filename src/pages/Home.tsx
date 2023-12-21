@@ -24,6 +24,7 @@ import ImgFour from "@/assets/iPhoneFour.png";
 import ImgSix from "@/assets/headphone.avif";
 import ImgSeven from "@/assets/speaker.avif";
 import BannerCount from "@/assets/banner-count.png";
+import { CiCalendar } from "react-icons/ci";
 
 // Import Swiper styles
 import "swiper/css";
@@ -38,6 +39,27 @@ const Home = () => {
   const [hovered, setHovered] = useState<Array<boolean>>([]);
   const [hoverActive, setHoverActive] = useState(false);
   const targetDate = new Date("2023-12-31T23:59:59");
+
+  const blogs = [
+    {
+      id: 1,
+      title: "get you shop listed on wire cart",
+      img: ImgSix,
+      datePosted: "October 21, 2023",
+    },
+    {
+      id: 2,
+      title: "Check out about  return policy.",
+      img: ImgSix,
+      datePosted: "November 8, 2023",
+    },
+    {
+      id: 3,
+      title: "Learn about discounted products",
+      img: ImgSix,
+      datePosted: "December 12, 2023",
+    },
+  ];
 
   const products: Product[] = [
     {
@@ -414,7 +436,7 @@ const Home = () => {
       </section>
 
       {/* countdown banner */}
-      <section className="bg-fifth mb-10 grid h-[400px] w-full grid-cols-2  justify-center  gap-4 border-2 border-green-500 px-32">
+      <section className="mb-10 grid h-[400px] w-full grid-cols-2 justify-center  gap-4  border-2 border-green-500 bg-fifth px-32">
         <div className=" border-2 border-pink-500 pt-6 text-center">
           <p className="my-4 inline-block bg-primary px-8 py-2 font-semibold text-white">
             Hurry Up!
@@ -433,7 +455,7 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="bg-fifth h-[400px]  border-2 border-purple-500 ">
+        <div className="h-[400px] border-2  border-purple-500 bg-fifth ">
           <img
             src={BannerCount}
             alt="countdown-banner"
@@ -445,6 +467,73 @@ const Home = () => {
       {/* Popular products */}
       <section className="my-8 px-32">
         <PopularProducts tabs={tabs} />
+      </section>
+
+      {/* blogs and events sections */}
+      <section className="px-32 pb-10">
+        <div className="my-6 flex justify-between ">
+          <h2 className="text-3xl font-semibold opacity-70">Blog & Events</h2>
+
+          <div className="flex items-center justify-center gap-4 font-semibold hover:text-primary">
+            <Link to="#">View all events</Link>
+            <IoMdArrowForward className="text-primary" />
+          </div>
+        </div>
+
+        <div
+          className="relative border-2 border-teal-500 "
+          onMouseEnter={() => setHoverActive(true)}
+          onMouseLeave={() => setHoverActive(false)}
+        >
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={3}
+            spaceBetween={20}
+            navigation={{
+              nextEl: ".custom-next",
+              prevEl: ".custom-prev",
+            }}
+            className="h-96 px-4 pt-8"
+          >
+            {blogs.map(({ id, title, img, datePosted }, index) => (
+              <SwiperSlide
+                key={id}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
+                className="flex h-80 min-w-[400px] flex-col  rounded-md border-2 border-purple-500 p-10 shadow-lg shadow-fourth"
+              >
+                <div className=" h-full w-full overflow-hidden">
+                  <img
+                    src={img}
+                    alt="blogImage"
+                    className="h-full w-full object-contain transition-all duration-1000 hover:scale-110 hover:transform"
+                  />
+                </div>
+                <div className="my-6 flex items-center gap-2">
+                  <CiCalendar /> <p>{datePosted}</p>
+                </div>
+                <Link to="#" className="capitalize hover:text-primary">
+                  {title}
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div
+            className={`custom-prev absolute -left-5 top-40 z-10 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary opacity-0 shadow-xl shadow-fourth transition duration-500 hover:text-primary ${
+              hoverActive ? "opacity-100" : ""
+            }`}
+          >
+            <MdOutlineKeyboardArrowLeft className="text-3xl opacity-60" />
+          </div>
+
+          <div
+            className={`custom-next absolute -right-5 top-40 z-10 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-secondary opacity-0 shadow-xl shadow-fourth transition duration-500 hover:text-primary ${
+              hoverActive ? "opacity-100" : ""
+            }`}
+          >
+            <MdOutlineKeyboardArrowRight className="text-3xl opacity-60" />
+          </div>
+        </div>
       </section>
     </>
   );
