@@ -24,6 +24,8 @@ import ImgFour from "@/assets/iPhoneFour.png";
 import ImgSix from "@/assets/headphone.avif";
 import ImgSeven from "@/assets/speaker.avif";
 import BannerCount from "@/assets/banner-count.png";
+import BlogOne from "@/assets/blogOne.jpg";
+import BlogTwo from "@/assets/blogTwo.jpg";
 import { CiCalendar } from "react-icons/ci";
 
 // Import Swiper styles
@@ -40,23 +42,30 @@ const Home = () => {
   const [hoverActive, setHoverActive] = useState(false);
   const targetDate = new Date("2023-12-31T23:59:59");
 
-  const blogs = [
+  interface blogs {
+    id: number;
+    title: string;
+    img: string;
+    datePosted: string;
+  }
+
+  const blogs: blogs[] = [
     {
       id: 1,
       title: "get you shop listed on wire cart",
-      img: ImgSix,
+      img: BlogOne,
       datePosted: "October 21, 2023",
     },
     {
       id: 2,
       title: "Check out about  return policy.",
-      img: ImgSix,
+      img: BlogTwo,
       datePosted: "November 8, 2023",
     },
     {
       id: 3,
       title: "Learn about discounted products",
-      img: ImgSix,
+      img: BlogOne,
       datePosted: "December 12, 2023",
     },
   ];
@@ -500,19 +509,22 @@ const Home = () => {
                 key={id}
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={() => handleMouseLeave(index)}
-                className="flex h-80 min-w-[400px] flex-col  rounded-md border-2 border-purple-500 p-10 shadow-lg shadow-fourth"
+                className="flex h-80 min-w-[400px] flex-col  rounded-md border-2 border-purple-500 shadow-lg shadow-fourth"
               >
                 <div className=" h-full w-full overflow-hidden">
                   <img
                     src={img}
                     alt="blogImage"
-                    className="h-full w-full object-contain transition-all duration-1000 hover:scale-110 hover:transform"
+                    className="h-full w-full object-cover transition-all duration-1000 hover:scale-110 hover:transform"
                   />
                 </div>
-                <div className="my-6 flex items-center gap-2">
+                <div className="my-4 flex items-center gap-2 px-4">
                   <CiCalendar /> <p>{datePosted}</p>
                 </div>
-                <Link to="#" className="capitalize hover:text-primary">
+                <Link
+                  to="#"
+                  className="px-4 pb-2 capitalize hover:text-primary"
+                >
                   {title}
                 </Link>
               </SwiperSlide>
